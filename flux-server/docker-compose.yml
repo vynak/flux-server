@@ -1,0 +1,17 @@
+services:
+  flux-server:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      FLUX_DEVICE: cpu
+      FLUX_DTYPE: auto
+      FLUX_GEN_SIZE: "512"
+      FLUX_STEPS: "4"
+    volumes:
+      - hf-cache:/models
+    shm_size: "1gb"
+    restart: unless-stopped
+
+volumes:
+  hf-cache:
